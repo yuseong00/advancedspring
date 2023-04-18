@@ -9,6 +9,8 @@ public class FieldLogTrace implements LogTrace {
 
     private static final String START_PREFIX = "-->";
     private static final String COMPLETE_PREFIX = "<--";
+
+    
     private static final String EX_PREFIX = "<X-";
 
     private TraceId traceIdHolder; //필드에 TraceId를 보관한다.

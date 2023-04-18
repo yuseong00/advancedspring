@@ -9,16 +9,14 @@ public class FieldLogTrace implements LogTrace {
 
     private static final String START_PREFIX = "-->";
     private static final String COMPLETE_PREFIX = "<--";
-
-    
     private static final String EX_PREFIX = "<X-";
 
-    private TraceId traceIdHolder; //필드에 TraceId를 보관한다.
+    private TraceId traceIdHolder; //필드에 TraceId를 보관한다. (ThreadLocal을 사용하지 않는다.)
 
     @Override
     public TraceStatus begin(String message) {
-        syncTraceId();   //필드에 보관된 TraceId를 동기화한다.
-        TraceId traceId = traceIdHolder; //필드에 보관된 TraceId를 가져온다.
+        syncTraceId();   //필드에 보관된 TraceId를 동기화한다. (최초 호출시에는 빈 TraceId를 생성한다.)
+        TraceId traceId = traceIdHolder; //필드에 보관된 TraceId를 가져온다. (최초 호출시에는 빈 TraceId를 가져온다.)
         Long startTimeMs = System.currentTimeMillis();
         log.info("[{}] {}{}", traceId.getId(), addSpace(START_PREFIX,
                 traceId.getLevel()), message);

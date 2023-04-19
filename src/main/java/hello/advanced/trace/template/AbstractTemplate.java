@@ -1,7 +1,7 @@
 package hello.advanced.trace.template;
 
 import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.logtrace.LogTrace;
+import hello.advanced.app.logtrace.LogTrace;
 
 public abstract class AbstractTemplate<T> {
 
